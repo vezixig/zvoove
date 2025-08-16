@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-2 md:gap-4">
+  @if(repositories.isLoading()) {
+  <app-skeleton-list />
+  } @if(repositories.error()) {
+  <app-error-state />
+  } @if(repositories.value()) { @for(repo of repositories.value(); track
+  repo.name) {
+  <app-repository-list-item
+    [name]="repo.name"
+    [description]="repo.description"
+    [starCount]="repo.stars"
+    [primaryLanguage]="!repo.primaryLanguage ? 'Unknown' : repo.primaryLanguage"
+  />
+  } }
+</div>
