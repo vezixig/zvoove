@@ -1,9 +1,28 @@
 <p-card [header]="repository().name">
-  <p class="m-0">
+  <p class="mb-2">
     {{ repository().description }}
   </p>
-  <footer class="flex justify-between align-items-center">
-    <span><i class="pi pi-star-fill"></i> {{ repository().stars }}</span>
-    <span><i class="pi pi-code"></i> {{ repository().primaryLanguage }}</span>
+  <footer
+    class="flex flex-col sm:flex-row justify-between align-items-center gap-y-2"
+  >
+    <span
+      style="display: flex; align-items: center; gap: 0.5rem; min-width: 90px"
+    >
+      <i class="pi pi-trophy" style="font-size: 1.2rem"></i>
+      {{ repository().score }}
+    </span>
+    <span
+      style="display: flex; align-items: center; gap: 0.5rem; min-width: 90px"
+    >
+      <i class="pi pi-star-fill" style="font-size: 1.2rem"></i>
+      {{ repository().stars }}
+    </span>
+    <span
+      class="justify-start sm:justify-end"
+      style="display: flex; align-items: center; gap: 0.5rem; min-width: 90px"
+    >
+      <i class="pi pi-code" style="font-size: 1.2rem"></i>
+      {{ repository().primaryLanguage }}
+    </span>
   </footer>
 </p-card>
