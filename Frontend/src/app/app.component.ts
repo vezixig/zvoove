@@ -4,6 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { SkeletonListComponent } from './shared/skeleton-list/skeleton-list.component';
 import { RepositoryListItemComponent } from './repositories/repository-list-item/repository-list-item.component';
+import { ErrorStateComponent } from './shared/skeleton-list/error-state/error-state.component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -12,6 +13,7 @@ import { RepositoryListItemComponent } from './repositories/repository-list-item
     MenubarModule,
     SkeletonListComponent,
     RepositoryListItemComponent,
+    ErrorStateComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
