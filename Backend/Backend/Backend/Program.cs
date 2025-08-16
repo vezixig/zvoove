@@ -13,6 +13,14 @@ builder.Services.AddHttpClient<IGitHubService, GitHubService>(client =>
     client.BaseAddress = new Uri("https://api.github.com");
     client.DefaultRequestHeaders.UserAgent.ParseAdd("ZvooveCaseStudy/1.0");
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 
 var app = builder.Build();
 
@@ -24,6 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
 
 app.MapGet("/repositories", async (IRepositoryService repositoryService) =>
     {

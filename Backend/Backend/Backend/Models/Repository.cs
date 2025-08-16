@@ -24,4 +24,9 @@ public sealed class Repository
     ///     Gets or sets the number of forks the repository has.
     /// </summary>
     public int Forks { get; set; }
+
+    /// <summary>
+    ///     Gets or sets the primary programming language of the repository.
+    /// </summary>
+    public string PrimaryLanguage { get; set; } = "";
 }
