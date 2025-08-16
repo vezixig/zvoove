@@ -7,25 +7,13 @@
 
   <!-- Main content area -->
   <div
-    class="flex-grow flex flex-col mt-4 lg:mt-16 mb-4 bg-gray-700 mx-auto w-full max-w-md sm:max-w-2xl"
+    class="flex-grow flex flex-col mt-4 lg:mt-16 mb-4 mx-auto w-full max-w-6xl"
   >
     <div class="w-full p-2 lg:p-4 flex flex-col gap-2 md:gap-4">
-      <app-repository-list-item
-        [name]="'Repository Name'"
-        [description]="
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd '
-        "
-        [starCount]="2"
-        [primaryLanguage]="'TypeScript'"
-      />
-      <app-repository-list-item
-        [name]="'Repository Name'"
-        [description]="
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd '
-        "
-        [starCount]="2"
-        [primaryLanguage]="'TypeScript'"
-      />
+      <app-error-state
+        title="No Response"
+        message="The request failed to complete. Please try again later."
+      ></app-error-state>
       <router-outlet></router-outlet>
     </div>
   </div>
