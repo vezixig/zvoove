@@ -7,7 +7,7 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { RepositoriesService } from '../repositories/repositories.service';
 import { Repository } from '../repositories/repository.model';
 import { Language } from '../languages/language.model';
@@ -38,7 +38,14 @@ export const RepositoriesStore = signalStore(
             isLoading: true,
           }));
           const repositories = await firstValueFrom(
-            repositoriesService.getTrending()
+            repositoriesService.getTrending().pipe(
+              map((repos) =>
+                repos.map((repo) => ({
+                  ...repo,
+                  primaryLanguage: repo.primaryLanguage ?? 'Unknown',
+                }))
+              )
+            )
           );
           patchState(store, () => ({ repositories }));
         } catch (error) {
@@ -54,11 +61,11 @@ export const RepositoriesStore = signalStore(
      * Get the top programming languages used in the repositories.
      * @returns An array of languages with their repository count.
      */
-    topLanguages: () => {
+    trendingLanguages: () => {
       if (!repositories()) return [];
       const languageCount: Record<string, number> = {};
       for (const repo of repositories()!) {
-        const lang = repo.primaryLanguage ?? 'Unknown';
+        const lang = repo.primaryLanguage;
         languageCount[lang] = (languageCount[lang] || 0) + 1;
       }
       return Object.entries(languageCount)

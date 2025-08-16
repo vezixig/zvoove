@@ -1,9 +1,9 @@
-<p-card [header]="name()">
+<p-card [header]="repository().name">
   <p class="m-0">
-    {{ description() }}
+    {{ repository().description }}
   </p>
   <footer class="flex justify-between align-items-center">
-    <span><i class="pi pi-star-fill"></i> {{ starCount() }}</span>
-    <span><i class="pi pi-code"></i> {{ primaryLanguage() }}</span>
+    <span><i class="pi pi-star-fill"></i> {{ repository().stars }}</span>
+    <span><i class="pi pi-code"></i> {{ repository().primaryLanguage }}</span>
   </footer>
 </p-card>

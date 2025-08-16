@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 @Component({
@@ -9,5 +9,15 @@ import { MenubarModule } from 'primeng/menubar';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  private readonly router = inject(Router);
   title = 'Frontend';
+
+  navigate(event: any) {
+    const label = event.item.label;
+    if (label === 'Repositories') {
+      this.router.navigate(['/repository']);
+    } else if (label === 'Languages') {
+      this.router.navigate(['/language']);
+    }
+  }
 }
