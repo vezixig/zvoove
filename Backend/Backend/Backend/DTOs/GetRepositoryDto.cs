@@ -20,5 +20,5 @@ public sealed record GetRepositoryDto
     /// <summary>
     ///     Gets or sets the primary programming language of the repository.
     /// </summary>
-    public string PrimaryLanguage { get; set; } = "";
+    public string PrimaryLanguage { get; init; } = "";
 }
