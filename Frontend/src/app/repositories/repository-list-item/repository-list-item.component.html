@@ -1,0 +1,9 @@
+<p-card [header]="name()">
+  <p class="m-0">
+    {{ description() }}
+  </p>
+  <footer class="flex justify-between align-items-center">
+    <span><i class="pi pi-star-fill"></i> {{ starCount() }}</span>
+    <span><i class="pi pi-code"></i> {{ primaryLanguage() }}</span>
+  </footer>
+</p-card>
