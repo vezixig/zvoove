@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ErrorStateComponent } from '../../shared/skeleton-list/error-state/error-state.component';
 import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.component';
-import { RepositoriesStore } from '../../state/respositories.store';
+import { RepositoriesStore } from '../../state/repositories.store';
 import { LanguageListItemComponent } from '../language-list-item/language-list-item.component';
 
 @Component({

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.component';
 import { ErrorStateComponent } from '../../shared/skeleton-list/error-state/error-state.component';
 import { RepositoryListItemComponent } from '../repository-list-item/repository-list-item.component';
-import { RepositoriesStore } from '../../state/respositories.store';
+import { RepositoriesStore } from '../../state/repositories.store';
 
 @Component({
   selector: 'app-repository-list',
