@@ -11,27 +11,18 @@ public interface IGitHubService
 
 internal sealed class GitHubService(IMemoryCache memoryCache, HttpClient httpClient) : IGitHubService
 {
-    private const string GitHubApiBaseUrl = "https://api.github.com";
     private const string RepositorySearchEndpoint = "/search/repositories";
     private const string RepositoryQueryParams = "q=created:<TODAY fork:false&sort=stars&order=desc&per_page=100";
-
     private const string CacheKey = "TrendingRepositories";
     private const int CacheDurationHours = 6;
-
 
     public async Task<List<Repository>> GetTrendingRepositoriesAsync()
     {
         if (memoryCache.TryGetValue(CacheKey, out List<Repository>? cachedRepositories))
             return cachedRepositories ?? [];
 
-        var uri = new UriBuilder(GitHubApiBaseUrl)
-        {
-            Path = RepositorySearchEndpoint,
-            Query = RepositoryQueryParams.Replace("TODAY", DateTime.UtcNow.ToString("yyyy-MM-dd"))
-        }.Uri;
-
-        // add user agent header to comply with GitHub API requirements
-        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("ZvooveCaseStudy/1.0");
+        var uri =
+            $"{RepositorySearchEndpoint}?{RepositoryQueryParams.Replace("TODAY", DateTime.UtcNow.ToString("yyyy-MM-dd"))}";
 
         var response = await httpClient.GetAsync(uri);
         if (!response.IsSuccessStatusCode)
