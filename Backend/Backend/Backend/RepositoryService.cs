@@ -16,7 +16,8 @@ internal sealed class RepositoryService(IGitHubService service) : IRepositorySer
         {
             Name = repo.Name,
             Description = repo.Description,
-            Stars = repo.Stars
+            Stars = repo.Stars,
+            PrimaryLanguage = repo.PrimaryLanguage
         }).ToList();
     }
 }
