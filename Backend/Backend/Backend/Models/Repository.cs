@@ -28,5 +28,5 @@ public sealed class Repository
     /// <summary>
     ///     Gets or sets the primary programming language of the repository.
     /// </summary>
-    public string PrimaryLanguage { get; set; } = "";
+    public string? PrimaryLanguage { get; set; }
 }
