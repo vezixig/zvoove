@@ -2,7 +2,7 @@
 
 namespace Backend.Models;
 
-public class SearchRepositoryResponse
+public sealed class SearchRepositoryResponse
 {
     [JsonPropertyName("total_count")] public int TotalCount { get; set; }
 
@@ -12,7 +12,7 @@ public class SearchRepositoryResponse
     [JsonPropertyName("items")] public List<RepositoryItem> Items { get; set; }
 }
 
-public class RepositoryItem
+public sealed class RepositoryItem
 {
     [JsonPropertyName("id")] public int Id { get; set; }
 
@@ -105,7 +105,7 @@ public class RepositoryItem
     [JsonPropertyName("score")] public double Score { get; set; }
 }
 
-public class Owner
+public sealed class Owner
 {
     [JsonPropertyName("login")] public string Login { get; set; }
 
@@ -149,7 +149,7 @@ public class Owner
     [JsonPropertyName("site_admin")] public bool SiteAdmin { get; set; }
 }
 
-public class License
+public sealed class License
 {
     [JsonPropertyName("key")] public string Key { get; set; }
 

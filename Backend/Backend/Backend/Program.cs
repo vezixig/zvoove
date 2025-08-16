@@ -1,4 +1,5 @@
 using Backend;
+using Backend.DTOs;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddMemoryCache();
 builder.Services.ConfigureHttpClientDefaults(o => o.AddStandardResilienceHandler());
+builder.Services.AddTransient<IRepositoryService, RepositoryService>();
 builder.Services.AddHttpClient<IGitHubService, GitHubService>(client =>
 {
     client.BaseAddress = new Uri("https://api.github.com");
@@ -23,11 +25,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/weatherforecast", async (IGitHubService githubService) =>
+app.MapGet("/repositories", async (IRepositoryService repositoryService) =>
     {
-        var test = await githubService.GetTrendingRepositoriesAsync();
-        return test;
+        var repositories = await repositoryService.GetTrendingRepositoriesAsync();
+        return repositories.Count == 0
+            ? Results.NotFound("No trending repositories found.")
+            : Results.Ok(repositories);
     })
-    .WithName("GetWeatherForecast");
+    .WithName("Get Trending Repositories")
+    .WithDescription("Fetches the first 100 trending repositories")
+    .Produces<List<GetRepositoryDto>>()
+    .Produces<string>(StatusCodes.Status404NotFound, "application/json");
 
 app.Run();
