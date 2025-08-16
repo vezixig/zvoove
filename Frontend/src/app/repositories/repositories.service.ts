@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import { httpResource } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Repository } from './repository.model';
 
 @Injectable({ providedIn: 'root' })
 export class RepositoriesService {
+  private readonly httpClient = inject(HttpClient);
+
   getTrending() {
-    return httpResource<Repository[]>(
-      () => environment.apiBaseUrl + `/repositories`
+    return this.httpClient.get<Repository[]>(
+      environment.apiBaseUrl + `/repositories`
     );
   }
 }

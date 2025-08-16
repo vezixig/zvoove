@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RepositoriesService } from '../repositories.service';
 import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.component';
 import { ErrorStateComponent } from '../../shared/skeleton-list/error-state/error-state.component';
 import { RepositoryListItemComponent } from '../repository-list-item/repository-list-item.component';
+import { RepositoriesStore } from '../../state/respositories.store';
 
 @Component({
   selector: 'app-repository-list',
@@ -16,6 +16,5 @@ import { RepositoryListItemComponent } from '../repository-list-item/repository-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RepositoryListComponent {
-  private readonly repositoriesService = inject(RepositoriesService);
-  readonly repositories = this.repositoriesService.getTrending();
+  readonly repositoriesStore = inject(RepositoriesStore);
 }

@@ -1,10 +1,10 @@
 <div class="flex flex-col gap-2 md:gap-4">
-  @if(repositories.isLoading()) {
+  @if(repositoriesStore.isLoading()) {
   <app-skeleton-list />
-  } @if(repositories.error()) {
+  } @if(repositoriesStore.hasError()) {
   <app-error-state />
-  } @if(repositories.value()) { @for(repo of repositories.value(); track
-  repo.name) {
+  } @if(repositoriesStore.repositories()) { @for(repo of
+  repositoriesStore.repositories(); track repo.name) {
   <app-repository-list-item
     [name]="repo.name"
     [description]="repo.description"
