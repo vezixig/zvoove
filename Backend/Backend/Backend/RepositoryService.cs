@@ -12,12 +12,9 @@ internal sealed class RepositoryService(IGitHubService service) : IRepositorySer
     public async Task<List<GetRepositoryDto>> GetTrendingRepositoriesAsync()
     {
         var repositories = await service.GetTrendingRepositoriesAsync();
-        return repositories.Select(repo => new GetRepositoryDto
-        {
-            Name = repo.Name,
-            Description = repo.Description,
-            Stars = repo.Stars,
-            PrimaryLanguage = repo.PrimaryLanguage
-        }).ToList();
+        return repositories
+            .Select(GetRepositoryDto.FromRepository)
+            .OrderByDescending(o => o.Score)
+            .ToList();
     }
 }
