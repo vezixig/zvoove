@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.component';
 import { ErrorStateComponent } from '../../shared/skeleton-list/error-state/error-state.component';
-import { RepositoryListItemComponent } from '../repository-list-item/repository-list-item.component';
+import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.component';
 import { RepositoriesStore } from '../../state/repositories.store';
+import { LanguageListItemComponent } from '../language-list-item/language-list-item.component';
 
 @Component({
-  selector: 'app-repository-list',
+  selector: 'app-language-list',
   imports: [
     SkeletonListComponent,
     ErrorStateComponent,
-    RepositoryListItemComponent,
+    LanguageListItemComponent,
   ],
-  templateUrl: './repository-list.component.html',
-  styleUrl: './repository-list.component.css',
+  templateUrl: './language-list.component.html',
+  styleUrl: './language-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RepositoryListComponent {
+export class LanguageListComponent {
   readonly repositoriesStore = inject(RepositoriesStore);
 }

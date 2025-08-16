@@ -2,8 +2,15 @@
   <!-- Menu -->
   <p-menubar
     class="fixed top-0 sm:bottom-auto w-full z-50 shadow-md"
-    [model]="[{ label: 'Repositories', icon: 'pi pi-th-large' }]"
-  ></p-menubar>
+    [model]="[
+      {
+        label: 'Repositories',
+        icon: 'pi pi-th-large',
+        routerLink: '/repository'
+      },
+      { label: 'Languages', icon: 'pi pi-code', routerLink: '/language' }
+    ]"
+  />
 
   <!-- Main content area -->
   <div
