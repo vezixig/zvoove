@@ -47,7 +47,9 @@ internal sealed class GitHubService(IMemoryCache memoryCache, HttpClient httpCli
             Description = item.Description,
             Stars = item.StargazersCount,
             Forks = item.ForksCount,
-            PrimaryLanguage = item.Language
+            PrimaryLanguage = item.Language,
+            LastUpdateUtc = item.UpdatedAt,
+            OpenIssues = item.OpenIssuesCount
         }).ToList();
         return repositories;
     }
