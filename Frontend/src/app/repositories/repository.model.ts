@@ -1,5 +1,6 @@
 export interface Repository {
-  name: string;
   description: string;
+  name: string;
+  primaryLanguage: string;
   stars: number;
 }
