@@ -1,14 +1,17 @@
 <div class="min-h-screen flex flex-col">
   <!-- Menu -->
   <p-menubar
-    class="fixed bottom-0 sm:top-0 sm:bottom-auto w-full z-50 shadow-md"
+    class="fixed top-0 sm:bottom-auto w-full z-50 shadow-md"
     [model]="[{ label: 'Repositories', icon: 'pi pi-th-large' }]"
   ></p-menubar>
 
   <!-- Main content area -->
   <div
-    class="flex-grow flex items-center justify-center mt-4 lg:mt-16 mb-4 bg-gray-700 mx-auto w-full max-w-md sm:max-w-2xl"
+    class="flex-grow flex flex-col mt-4 lg:mt-16 mb-4 bg-gray-700 mx-auto w-full max-w-md sm:max-w-2xl"
   >
-    <router-outlet></router-outlet>
+    <div class="w-full p-2 lg:p-4">
+      <app-skeleton-list class="grow" />
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
