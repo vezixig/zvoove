@@ -38,7 +38,7 @@ export const RepositoriesStore = signalStore(
             isLoading: true,
           }));
           const repositories = await firstValueFrom(
-            repositoriesService.getTrending('cat').pipe(
+            repositoriesService.getTrending(filter).pipe(
               map((repos) =>
                 repos.map((repo) => ({
                   ...repo,
