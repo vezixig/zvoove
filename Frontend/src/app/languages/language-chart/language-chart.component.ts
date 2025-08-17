@@ -18,7 +18,7 @@ export class LanguageChartComponent {
   private readonly repositoriesStore = inject(RepositoriesStore);
 
   chartData = computed(() => {
-    const langs = this.repositoriesStore.trendingLanguages();
+    const langs = this.repositoriesStore.trendingLanguages() ?? [];
     return {
       labels: langs.map((l) => l.name),
       datasets: [
