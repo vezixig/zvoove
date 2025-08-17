@@ -4,8 +4,9 @@
   <app-skeleton-list />
   } @else if(repositoriesStore.hasError()) {
   <app-error-state />
-  } @else if(repositoriesStore.trendingLanguages()) { @for(language of
-  repositoriesStore.trendingLanguages(); track language.name) {
+  } @else if(repositoriesStore.trendingLanguages()) {
+  <app-language-chart />
+  @for(language of repositoriesStore.trendingLanguages(); track language.name) {
   <app-language-list-item [language]="language" />
   } @empty { <app-empty-state />} }
 </div>

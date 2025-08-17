@@ -30,7 +30,7 @@ export class SearchBarComponent {
       .pipe(
         takeUntilDestroyed(),
         debounceTime(SEARCH_DEBOUNCE_TIME),
-        filter((term) => term.length >= SEARCH_MIN_LENGTH),
+        filter((term) => term === '' || term.length >= SEARCH_MIN_LENGTH),
         tap((term) => {
           this.repositoriesStore.refresh(term);
           // Removed circular update: this.searchTerm.set(term);
