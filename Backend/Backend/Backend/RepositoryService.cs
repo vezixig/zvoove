@@ -11,7 +11,7 @@ internal sealed class RepositoryService(IGitHubService service) : IRepositorySer
 {
     public async Task<List<GetRepositoryDto>> GetTrendingRepositoriesAsync(string filter)
     {
-        var repositories = await service.GetTrendingRepositoriesAsync();
+        var repositories = await service.GetTrendingRepositoriesAsync(filter);
         return repositories
             .Select(GetRepositoryDto.FromRepository)
             .OrderByDescending(o => o.Score)

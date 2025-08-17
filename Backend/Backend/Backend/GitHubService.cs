@@ -6,23 +6,28 @@ namespace Backend;
 
 public interface IGitHubService
 {
-    public Task<List<Repository>> GetTrendingRepositoriesAsync();
+    public Task<List<Repository>> GetTrendingRepositoriesAsync(string filter);
 }
 
 internal sealed class GitHubService(IMemoryCache memoryCache, HttpClient httpClient) : IGitHubService
 {
     private const string RepositorySearchEndpoint = "/search/repositories";
     private const string RepositoryQueryParams = "q=created:<TODAY fork:false&sort=stars&order=desc&per_page=100";
+    private const string RepositoryFilterParams = "in:topics,in:description,in:name";
     private const string CacheKey = "TrendingRepositories";
     private const int CacheDurationHours = 6;
 
-    public async Task<List<Repository>> GetTrendingRepositoriesAsync()
+    public async Task<List<Repository>> GetTrendingRepositoriesAsync(string filter)
     {
-        if (memoryCache.TryGetValue(CacheKey, out List<Repository>? cachedRepositories))
+        filter = filter.ToLower().Trim();
+
+        var filterCacheKey = $"{CacheKey}_{filter}";
+        if (memoryCache.TryGetValue(filterCacheKey, out List<Repository>? cachedRepositories))
             return cachedRepositories ?? [];
 
         var uri =
             $"{RepositorySearchEndpoint}?{RepositoryQueryParams.Replace("TODAY", DateTime.UtcNow.ToString("yyyy-MM-dd"))}";
+        if (!string.IsNullOrEmpty(filter)) uri = uri.Replace("q=", $"q={filter} {RepositoryFilterParams} ");
 
         var response = await httpClient.GetAsync(uri);
         if (!response.IsSuccessStatusCode)
