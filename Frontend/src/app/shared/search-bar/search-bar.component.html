@@ -10,3 +10,8 @@
     aria-label="Search"
   />
 </div>
+@if(searchTerm().length > 0 && searchTerm().length < 3) {
+<div class="text-orange-500 text-sm mt-2 text-center">
+  Please enter at least 3 characters to search.
+</div>
+}

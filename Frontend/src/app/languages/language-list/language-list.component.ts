@@ -4,6 +4,7 @@ import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.
 import { RepositoriesStore } from '../../state/repositories.store';
 import { LanguageListItemComponent } from '../language-list-item/language-list-item.component';
 import { EmptyStateComponent } from '../../shared/empty-state/empty-state.component';
+import { LanguageChartComponent } from '../language-chart/language-chart.component';
 
 @Component({
   selector: 'app-language-list',
@@ -12,6 +13,7 @@ import { EmptyStateComponent } from '../../shared/empty-state/empty-state.compon
     ErrorStateComponent,
     LanguageListItemComponent,
     EmptyStateComponent,
+    LanguageChartComponent,
   ],
   templateUrl: './language-list.component.html',
   styleUrl: './language-list.component.css',
