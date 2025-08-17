@@ -29,7 +29,15 @@ export class LanguageChartComponent {
     };
   });
 
-  chartOptions = {
+  readonly chartOptions: Readonly<{
+    responsive: boolean;
+    plugins: {
+      legend: {
+        display: boolean;
+        position: string;
+      };
+    };
+  }> = {
     responsive: true,
     plugins: {
       legend: {
