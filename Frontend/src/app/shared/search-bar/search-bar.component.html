@@ -1,0 +1,12 @@
+<div class="flex items-center gap-2 w-full max-w-md mx-auto">
+  <span class="pi pi-search text-gray-500 text-xl"></span>
+  <input
+    pInputText
+    type="text"
+    class="w-full p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+    placeholder="Search repositories or topics..."
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchChange($event)"
+    aria-label="Search"
+  />
+</div>

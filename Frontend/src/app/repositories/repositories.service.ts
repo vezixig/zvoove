@@ -7,9 +7,11 @@ import { Repository } from './repository.model';
 export class RepositoriesService {
   private readonly httpClient = inject(HttpClient);
 
-  getTrending() {
+  getTrending(filter?: string) {
     return this.httpClient.get<Repository[]>(
-      environment.apiBaseUrl + `/repositories`
+      filter
+        ? environment.apiBaseUrl + `/repositories?filter=${filter}`
+        : environment.apiBaseUrl + `/repositories`
     );
   }
 }
