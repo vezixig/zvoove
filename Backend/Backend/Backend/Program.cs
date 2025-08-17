@@ -1,5 +1,6 @@
 using Backend;
 using Backend.DTOs;
+using Microsoft.AspNetCore.Mvc;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,9 +35,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 
-app.MapGet("/repositories", async (IRepositoryService repositoryService) =>
+app.MapGet("/repositories", async ([FromQuery] string? filter, IRepositoryService repositoryService) =>
     {
-        var repositories = await repositoryService.GetTrendingRepositoriesAsync();
+        var repositories = await repositoryService.GetTrendingRepositoriesAsync(filter ?? "");
         return repositories.Count == 0
             ? Results.NotFound("No trending repositories found.")
             : Results.Ok(repositories);
