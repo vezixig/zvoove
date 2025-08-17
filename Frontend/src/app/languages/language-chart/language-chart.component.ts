@@ -42,7 +42,6 @@ export class LanguageChartComponent {
     plugins: {
       legend: {
         display: false,
-        position: 'bottom',
       },
     },
   };
