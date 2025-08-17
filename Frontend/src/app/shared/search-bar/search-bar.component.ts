@@ -33,7 +33,7 @@ export class SearchBarComponent {
         filter((term) => term.length >= SEARCH_MIN_LENGTH),
         tap((term) => {
           this.repositoriesStore.refresh(term);
-          this.searchTerm.set(term);
+          // Removed circular update: this.searchTerm.set(term);
         })
       )
       .subscribe();
