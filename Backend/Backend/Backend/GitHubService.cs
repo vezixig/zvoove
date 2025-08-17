@@ -40,7 +40,7 @@ internal sealed class GitHubService(IMemoryCache memoryCache, HttpClient httpCli
 
         var repositories = MapRepositories(searchRepositoryResponse);
 
-        memoryCache.Set(CacheKey, repositories, TimeSpan.FromHours(CacheDurationHours));
+        memoryCache.Set(filterCacheKey, repositories, TimeSpan.FromHours(CacheDurationHours));
         return repositories;
     }
 

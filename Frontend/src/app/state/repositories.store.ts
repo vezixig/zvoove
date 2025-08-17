@@ -31,14 +31,14 @@ export const RepositoriesStore = signalStore(
     const repositoriesService = inject(RepositoriesService);
 
     return {
-      async refresh() {
+      async refresh(filter?: string) {
         try {
           patchState(store, () => ({
             repositories: undefined,
             isLoading: true,
           }));
           const repositories = await firstValueFrom(
-            repositoriesService.getTrending().pipe(
+            repositoriesService.getTrending('cat').pipe(
               map((repos) =>
                 repos.map((repo) => ({
                   ...repo,
