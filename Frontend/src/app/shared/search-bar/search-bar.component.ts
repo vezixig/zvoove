@@ -10,6 +10,9 @@ import { debounceTime, filter, tap } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RepositoriesStore } from '../../state/repositories.store';
 
+const SEARCH_DEBOUNCE_TIME = 1000;
+const SEARCH_MIN_LENGTH = 3;
+
 @Component({
   selector: 'app-search-bar',
   imports: [FormsModule],
@@ -19,7 +22,6 @@ import { RepositoriesStore } from '../../state/repositories.store';
 })
 export class SearchBarComponent {
   private readonly repositoriesStore = inject(RepositoriesStore);
-
   private readonly searchTermSubject = new Subject<string>();
   readonly searchTerm = model('');
 
@@ -27,8 +29,8 @@ export class SearchBarComponent {
     this.searchTermSubject
       .pipe(
         takeUntilDestroyed(),
-        debounceTime(1000),
-        filter((term) => term.length >= 3),
+        debounceTime(SEARCH_DEBOUNCE_TIME),
+        filter((term) => term.length >= SEARCH_MIN_LENGTH),
         tap((term) => {
           this.repositoriesStore.refresh(term);
           this.searchTerm.set(term);
