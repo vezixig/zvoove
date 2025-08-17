@@ -3,6 +3,7 @@ import { ErrorStateComponent } from '../../shared/error-state/error-state.compon
 import { SkeletonListComponent } from '../../shared/skeleton-list/skeleton-list.component';
 import { RepositoriesStore } from '../../state/repositories.store';
 import { LanguageListItemComponent } from '../language-list-item/language-list-item.component';
+import { EmptyStateComponent } from '../../shared/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-language-list',
@@ -10,6 +11,7 @@ import { LanguageListItemComponent } from '../language-list-item/language-list-i
     SkeletonListComponent,
     ErrorStateComponent,
     LanguageListItemComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './language-list.component.html',
   styleUrl: './language-list.component.css',
